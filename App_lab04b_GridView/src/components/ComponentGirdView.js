@@ -1,11 +1,31 @@
-import { View, Text, StatusBar, Image } from 'react-native'
-import React from 'react'
+import { View, Text, StatusBar, Image, FlatList } from 'react-native'
+import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons'
 
 import styles from '../themes/styleGirdView';
+import ComponentItem from './ComponentItem';
+
+import database from '../databases/data';
 
 const ComponentGirdView = () => {
+
+    const [data, setData] = useState([]);
+
+    useEffect(() => {
+        setData(database);
+    }, [])
+
+
+    // function renderItem({item}, index) {
+        
+    // }
+
+    const renderItem = ( {item}, index ) => {
+        // return <ComponentItem item={item} />
+        return <ComponentItem  /> 
+    }
+
     return (
         <View style={[styles.flex_1]}>
             <View style={[{}, styles.containerHeader, styles.row]}  >
@@ -26,51 +46,20 @@ const ComponentGirdView = () => {
             <View style={[{ height: 200 }, styles.containerCenter, styles.flex_1]} >
                 <Text style={[{ padding: 15, paddingHorizontal: 20 }]}   >Bạn có thắc mắc với sản phẩm vừa xem đừng ngại chát với shop</Text>
 
-                <View style={[styles.row, {}]}     >
-                    <View style={[styles.flex_1, styles.view_centerTop, {}]}     >
-                        <Image source={require('../images/4b_daynguon.png')} style={[{ height: 90 },]} />
-                        <Text style={[,
-                            {
-                                marginTop: 5,
-                                paddingHorizontal: 20,
-                            }]}  >Cáp chuyển từ Cổng USB sang PS2...</Text>
-                        <View style={[styles.row, {}]}  >
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#C4C4C4'} size={22} style={[{}]} />
-                            <Text style={[{ marginTop: 1, fontSize: 14, marginLeft: 5 }]}  >(15)</Text>
+                <View style={[styles.row, styles.flex_1, { flexWrap: 'wrap',}]}     >
 
-                        </View>
-                        <View style={[styles.row, { alignItems: 'flex-start', width: '77%' }]}  >
-                            <Text style={[{}]}  > 69.000 đ</Text>
-                            <Text style={[{ marginLeft: 15, color: "#969DAA" }]}  > 39%</Text>
-                        </View>
-                    </View>
+                    {/* <ComponentItem />
+                    <ComponentItem />
+                    <ComponentItem /> */}
 
+                    <FlatList
+                        data={data}
+                        keyExtractor={(item) => "_"+item.id.toString()}
+                        renderItem = {renderItem}
+                        numColumns = {2}
+                        key={2}
+                    />
 
-                    <View style={[styles.flex_1, styles.view_centerTop, {}]}     >
-                        <Image source={require('../images/4b_daynguon.png')} style={[{ height: 90 },]} />
-                        <Text style={[,
-                            {
-                                marginTop: 5,
-                                paddingHorizontal: 20,
-                            }]}  >Cáp chuyển từ Cổng USB sang PS2...</Text>
-                        <View style={[styles.row, {}]}  >
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#FBE41B'} size={22} style={[{}]} />
-                            <IconMaterialIcons name='star' color={'#C4C4C4'} size={22} style={[{}]} />
-                            <Text style={[{ marginTop: 1, fontSize: 14, marginLeft: 5 }]}  >(15)</Text>
-
-                        </View>
-                        <View style={[styles.row, { alignItems: 'flex-start', width: '77%' }]}  >
-                            <Text style={[{}]}  > 69.000 đ</Text>
-                            <Text style={[{ marginLeft: 15, color: "#969DAA" }]}  > 39%</Text>
-                        </View>
-                    </View>
                 </View>
 
 

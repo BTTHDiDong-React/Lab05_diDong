@@ -36,7 +36,7 @@ export default StyleSheet.create({
 
     },
     containerCenter: {
-        backgroundColor:'#E5E5E5',
+        backgroundColor:'#f3f3f3',
         height: 200,
     },
     containerfooter: {
