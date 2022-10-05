@@ -1,4 +1,4 @@
-import { View, Text, StatusBar, Image, FlatList } from 'react-native'
+import { View, Text, StatusBar, Image, FlatList, ScrollView, VirtualizedList } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Icon from 'react-native-vector-icons/MaterialCommunityIcons'
 import IconMaterialIcons from 'react-native-vector-icons/MaterialIcons'
@@ -16,14 +16,9 @@ const ComponentGirdView = () => {
         setData(database);
     }, [])
 
-
-    // function renderItem({item}, index) {
-        
-    // }
-
     const renderItem = ( {item}, index ) => {
-        // return <ComponentItem item={item} />
-        return <ComponentItem  /> 
+        return <ComponentItem item={item} />
+        // return <ComponentItem  /> 
     }
 
     return (
@@ -48,9 +43,7 @@ const ComponentGirdView = () => {
 
                 <View style={[styles.row, styles.flex_1, { flexWrap: 'wrap',}]}     >
 
-                    {/* <ComponentItem />
-                    <ComponentItem />
-                    <ComponentItem /> */}
+                    
 
                     <FlatList
                         data={data}
